@@ -50,6 +50,7 @@ class LoginService {
 
       this.logger.error("Invalid password");
       throw new Error("Authentication failed");
+      
 
   }
 
