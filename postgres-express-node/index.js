@@ -54,7 +54,7 @@ const MedicalTest_4 = subject("MedicalTest", {
 const MedicalTest_5 = subject("MedicalTest", {
   id: 5,
   UserId: 4,
-  test: "Swine flue",
+  test: "Swine flu",
   result: "positive",
   createdAt: new Date().setHours(0, 0, 0),
 });
@@ -62,9 +62,13 @@ const MedicalTest_5 = subject("MedicalTest", {
 // * =============================
 // *  Roles <--> permissions
 // * -----------------------------
-function defineAdminRules({ can }, user) {}
+function defineAdminRules({ can }, user) {
+    can("manage", "all");
+}
 function defineDoctorRules({ can }, user) {}
-function defineUserRules({ can }, user) {}
+function defineUserRules({ can }, user) {
+    can(["create", "read", "update", "delete"], "MedicalTest", {UserId: user.id});
+}
 function defineAnonymousRules({ can }, user) {}
 
 // * =============================
